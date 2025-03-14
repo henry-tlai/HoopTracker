@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoopTracker Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Paytone+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/21c13be224.js" crossorigin="anonymous"></script>
+    <style>
+       body {
+            font-family: "Crimson Text", serif;
+            font-weight: 600;
+            font-style: normal;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        i {
+            margin-right: 10px;
+            font-size: 34px;
+            color: #ea6b17;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        nav ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-left: auto;
+        }
+        nav ul li {
+            margin: 10px 20px;
+        } 
+        nav ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            color: black; /* Default color for links */
+            transition: color 0.3s ease; /* Smooth transition for color change */
+        }
+        nav ul li a:hover {
+            color: grey; /* Color when hovered over */
+        }
+        .section-divider {
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+        .query-section {
+            margin: 20px 0;
+        }
+        .query-input {
+            margin: 15px 0;
+        }
+        .query-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 400px;
+            padding: 5px;
+            margin-left: 5px;
+        }
+        button, select {
+            padding: 5px 10px;
+            margin-right: 10px;
+        }
+        footer {
+            background-color: black;
+           	color: white;
+            position: fixed;
+            bottom:0;
+           	left:0;
+           	padding: 20px;
+           	text-align: center;
+           	width: 100%;
+          	margin:0;
+		    margin-top: auto;
+          	box-sizing: border-box;
+          	border-color: lightblue;
+            border-width: 10px;
+        }
+        footer ul{
+            display: flex;
+            justify-content: center;
+            margin-bottom:10px; /*Space between image and text*/
+        }
+        footer ul a{
+            margin: 0  1.25%;
+            text-decoration: none;
+            color: white;
+        }
+        footer ul a:hover{
+            color: gray;
+        }
+        .nav-links {
+            margin-bottom: 20px;
+        }
+        .nav-links a {
+            color: #ea6b17;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .user-section {
+            float: right;
+        }
+        .user-section a {
+            color: #ea6b17;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .user-section a:hover {
+            text-decoration: underline;
+        }
+        .auth-links {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .auth-links a {
+            color: #ea6b17;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 18px;
+        }
+        .auth-links a:hover {
+            color: #d55f14;
+        }
+        .header-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .title-container {
+            display: flex;
+            align-items: center;
+            height: 34px;
+        }
+        .subheading {
+            font-size: 16px;
+            color: #000000;
+            margin-top: -5px;
+            margin-left: 44px;
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 0;
+            margin-top: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-----header/navbar----->
+	<div id="header">
+		<div class="container">
+			<nav> <!--navbar-->
+                <div class="header-content">
+                    <div class="title-container">
+                        <i class="fa-solid fa-basketball"></i><h2>HoopTracker</h2>
+                    </div>
+                    <h3 class="subheading">Team Members: Henry Lai, Kyle Taylor, Ajani Quibuyen</h3>
+                </div>
+			<ul>
+                <li><a href="source.html">Home</a></li>
+				<li><a href="User.php">User</a></li>
+                <li><a href="Team.php">Team</a></li>
+                <li><a href="Player.php">Player</a></li>
+                <li><a href="Conference.php">Conference</a></li>
+                <li><a href="FavTeam.php">Favorite Team</a></li>
+                <li><a href="FavPlayer.php">Favorite Player</a></li>
+                <li><a href="Game.php">Game</a></li>
+                <li><a href="MVP_Pick.php">MVP Pick</a></li>
+                <li><a href="Media.php">Media</a></li>
+			</ul>
+            <div class="auth-links">
+                <a href="login.php">Login</a>
+                <a href="signup.php">Sign Up</a>
+            </div>
+			</nav>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+    
+    <!--Queries-->
+    <ul>
+        <li>
+            <strong>Queries:</strong>
+            <ol>
+                <li><a href="query.php?id=1">Query 1:</a> Lists media uploaded by users about specific teams and has the like counter along them</li>
+                <li><a href="query.php?id=2">Query 2:</a> Shows the media posts and the amount by user (DwighKool)</li>
+                <li><a href="query.php?id=3">Query 3:</a> Lists the teams that have won more than the average</li>
+                <li><a href="query.php?id=4">Query 4:</a> Shows players who have been MVP more than once</li>
+                <li><a href="query.php?id=5">Query 5:</a> List the counted number of favorites for each team (sorted alphabetically) </li>
+            </ol>
+        </li>
+    </ul>
+    
+    <div class="section-divider"></div>
+
+    <!--Ad-Hoc Query-->
+    <ul>
+        <li>
+            <strong>Ad-hoc Query:</strong>
+            
+            <div class="query-input">
+                <form method="POST" action="adhoc_query.php">
+                    <span class="query-label">Please enter your query here:</span>
+                    <select name="query_type">
+                        <option value="SELECT">SELECT</option>
+                        <option value="INSERT INTO">INSERT INTO</option>
+                        <option value="UPDATE">UPDATE</option>
+                        <option value="DELETE FROM">DELETE FROM</option>
+                    </select>
+                    <input type="text" name="query" id="query-input">
+                    <br><br>
+                    <button type="reset" id="clear-btn">Clear</button>
+                    <button type="submit" id="submit-btn">Submit</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <!-----footer----->
+	<footer>
+		<ul>
+            <a href="source.html">Home</a>
+			<a href="User.php">User</a>
+            <a href="Team.php">Team</a>
+            <a href="Player.php">Player</a>
+            <a href="Conference.php">Conference</a>
+            <a href="Game.php">Game</a>
+            <a href="Media.php">Media</a>
+		</ul>
+        <h3>HoopTracker</h3>
+    <!--<img src="" width="30" height="auto" alt="Image"> --> <!-- Adjust the width and height attributes --> 
+        <p> &copy 2025 HoopTracker. All Rights Reserved. </p>
+	</footer>
+</body>
+</html>
