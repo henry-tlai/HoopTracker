@@ -8,16 +8,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Database connection
-$servername = "cssql.seattleu.edu";
-$username = "bd_aquibuyen";
-$password = "kAd1OpcEv0nfF5WN";
-$dbname = "bd_aquibuyen";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require_once __DIR__ . '/db.php';
 
 $error = '';
 
@@ -31,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        if ($hashed_password == $row['Password']) { 
+        if (password_verify($password, $row['Password'])) {
             $_SESSION['user_id'] = $row['UID'];
             $_SESSION['username'] = $row['Username'];
             header("Location: dashboard.php");

@@ -1,14 +1,6 @@
 <?php
-$servername = "cssql.seattleu.edu";
-$username = "bd_aquibuyen";
-$password = "kAd1OpcEv0nfF5WN";
-$dbname = "bd_aquibuyen";
-
-// Establish connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+// Database connection
+require_once __DIR__ . '/db.php';
 
 echo "<style>
     table {
@@ -48,9 +40,9 @@ function formatCellContent($value) {
 // Defining the Queries using an Associative Array
 $queries = array(
     1 => "SELECT Media.Description, Media.MediaURL, Media.Like_Counter, User.Username, Team.Team_Name, Team.LogoURL FROM Media Natural JOIN User NATURAL JOIN Team;",
-    2 => "SELECT Username, COUNT(Media_ID) as Number_Of_Posts FROM Media JOIN User ON User.UID = Media.UID WHERE Media.UID = '000000005';",
+    2 => "SELECT Username, COUNT(Media_ID) as Number_Of_Posts FROM Media JOIN User ON User.UID = Media.UID WHERE Media.UID = '000000005' GROUP BY Username;",
     3 => "SELECT Team_Name, LogoURL, Win FROM Team WHERE Win > (SELECT AVG(Win) FROM Team);",
-    4 => "SELECT F_Name, L_Name, COUNT(Season) AS Number_Of_MVP FROM MVP_Pick NATURAL JOIN Player GROUP BY Player_ID HAVING Number_Of_MVP > 1;",
+    4 => "SELECT F_Name, L_Name, COUNT(Season) AS Number_Of_MVP FROM MVP_Pick NATURAL JOIN Player GROUP BY Player_ID, F_Name, L_Name HAVING Number_Of_MVP > 1;",
     5 => "SELECT T.Team_Name, COUNT(F.UID) as Favorite_Count FROM Team T LEFT JOIN Fav_Team F ON T.Team_ID = F.Team_ID GROUP BY T.Team_Name ORDER BY Team_Name;"
 );
 
@@ -95,5 +87,5 @@ if ($result && mysqli_num_rows($result) > 0) {
     echo "0 results";
 }
 
-mysqli_free_result($result);
+if ($result) { mysqli_free_result($result); }
 ?>

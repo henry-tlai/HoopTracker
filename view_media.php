@@ -8,16 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Database connection
-$servername = "cssql.seattleu.edu";
-$username = "bd_aquibuyen";
-$password = "kAd1OpcEv0nfF5WN";
-$dbname = "bd_aquibuyen";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require_once __DIR__ . '/db.php';
 
 // Handle like action
 if (isset($_POST['like']) && isset($_POST['media_id'])) {
