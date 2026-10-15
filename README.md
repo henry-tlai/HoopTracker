@@ -51,10 +51,6 @@ Sample login: username `DwighKool`, password `password123`
 - `adhoc_query.php` runs raw SQL from a form. It is meant for local use, so don't deploy it publicly.
 - The team and player rows in `schema.sql` are sample data, and the logos and photos are placeholder images.
 
-## Screenshots
+## Credits
 
-[Add a screenshot of the home page and the team table here.]
-
-## Authors
-
-[Your name and any teammates]
+Built by the Seattle University Database Team for CPSC3300 Fundamentals of Databases, Winter 2025
