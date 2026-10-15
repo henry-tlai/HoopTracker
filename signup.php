@@ -8,16 +8,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Database connection
-$servername = "cssql.seattleu.edu";
-$username = "bd_aquibuyen";
-$password = "kAd1OpcEv0nfF5WN";
-$dbname = "bd_aquibuyen";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+require_once __DIR__ . '/db.php';
 
 $error = '';
 $success = '';
@@ -46,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $uid = str_pad(mt_rand(1, 999999999), 9, '0', STR_PAD_LEFT);
             
             // Insert new user
-            $sql = "INSERT INTO User (UID, Username, Password, ProfileURL) VALUES ('$uid', '$username', '$password', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png')";
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO User (UID, Username, Password, ProfileURL) VALUES ('$uid', '$username', '$password_hash', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png')";
             
             if (mysqli_query($conn, $sql)) {
                 $success = "Account created successfully! You can now <a href='login.php'>login</a>.";
